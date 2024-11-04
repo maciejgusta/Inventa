@@ -1,6 +1,6 @@
 import { View, StyleSheet, Alert } from "react-native";
 import { useState } from "react";
-import CameraView from "@/components/CameraView";
+import CameraCodeScanner from "@/components/CameraCodeScanner";
 import ScanButton from "@/components/ScanButton";
 
 
@@ -19,7 +19,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <View style={styles.cameraContainer}>
-        <CameraView onScan={handleScan} isScanning={isScanning} />
+        <CameraCodeScanner onScan={handleScan} isScanning={isScanning} />
       </View>
       <View style={styles.scanButtonContainer}>
         <ScanButton onPress={startScanning} />
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   },
   cameraContainer: {
     flex: 1,
-    width: "100%",
+    width: "90%",
     justifyContent: "center",
     alignItems: "center",
   },

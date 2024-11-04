@@ -1,17 +1,20 @@
 import { View, Pressable, StyleSheet } from "react-native";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 
-
 type Props = {
   onPress: () => void;
 };
 
-
-
 export default function ScanButton({ onPress }: Props) {
   return (
     <View style={styles.circleButtonContainer}>
-      <Pressable style={styles.circleButton} onPress={onPress}>
+      <Pressable
+        style={({ pressed }) => [
+          styles.circleButton,
+          pressed && { backgroundColor: "#ccc" }, // zmiana koloru na lekko szary przy naciśnięciu
+        ]}
+        onPress={onPress}
+      >
         <MaterialIcons name="add" size={38} color="#25292e" />
       </Pressable>
     </View>

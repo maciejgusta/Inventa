@@ -2,13 +2,15 @@ import { Text, View, StyleSheet, Button } from "react-native";
 import { Camera, CameraType } from "expo-camera/legacy";
 import { useState, useEffect, useCallback } from "react";
 import { useFocusEffect } from "expo-router";
+import PermissionButton from "@/components/PermissionButton";
 
 interface CameraViewProps {
   onScan: (data: string) => void;
   isScanning: boolean;
 }
 
-export default function CameraView({ onScan, isScanning }: CameraViewProps) {
+export default function CameraCodeScanner({ onScan, isScanning }: CameraViewProps) {
+  
   const [type, setType] = useState(CameraType.back);
   const [permission, requestPermission] = Camera.useCameraPermissions();
   const [isFocused, setIsFocused] = useState(false);
@@ -36,8 +38,8 @@ export default function CameraView({ onScan, isScanning }: CameraViewProps) {
   if (!permission || !permission.granted) {
     return (
       <View style={styles.container}>
-        <Text>We need your permission to show the camera</Text>
-        <Button title="Grant Permission" onPress={requestPermission} />
+        <Text style={styles.permission_text}>We need your permission to show the camera</Text>
+        <PermissionButton onPress={requestPermission}/>
       </View>
     );
   }
@@ -57,6 +59,10 @@ export default function CameraView({ onScan, isScanning }: CameraViewProps) {
 }
 
 const styles = StyleSheet.create({
+  permission_text: {
+    color: "#fff",
+    fontSize: 15,
+  },
   container: {
     flex: 1,
     backgroundColor: "#25292e",

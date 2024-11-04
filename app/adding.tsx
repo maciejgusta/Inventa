@@ -17,7 +17,7 @@ export default function Adding() {
   return (
     <View style={styles.container}>
       <Button title="Pokaż Pop-up" onPress={showModal} />
-      
+
       <Modal
         animationType="slide"   // Typ animacji
         transparent={true}      // Ustawienie przezroczystości
