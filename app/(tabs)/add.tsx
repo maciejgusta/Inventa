@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Modal, View, Text, Button, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  Modal,
+  View,
+  Text,
+  Button,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
 
 export default function Adding() {
   const [modalVisible, setModalVisible] = useState(false);
@@ -17,11 +24,11 @@ export default function Adding() {
   return (
     <View style={styles.container}>
       <Button title="Pokaż Pop-up" onPress={showModal} />
-      
+
       <Modal
-        animationType="slide"   // Typ animacji
-        transparent={true}      // Ustawienie przezroczystości
-        visible={modalVisible}  // Widoczność modala
+        animationType="fade" // Typ animacji
+        transparent={true} // Ustawienie przezroczystości
+        visible={modalVisible} // Widoczność modala
         onRequestClose={hideModal} // Zamknięcie modala po naciśnięciu przycisku wstecz (Android)
       >
         <View style={styles.overlay}>
@@ -56,7 +63,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 10,
     alignItems: "center",
-    shadowColor: "#000",  // Cień dla lepszego efektu
+    shadowColor: "#000", // Cień dla lepszego efektu
     shadowOffset: {
       width: 0,
       height: 2,

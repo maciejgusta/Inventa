@@ -2,17 +2,26 @@ import { View, StyleSheet, Alert } from "react-native";
 import { useState } from "react";
 import CameraCodeScanner from "@/components/CameraCodeScanner";
 import ScanButton from "@/components/ScanButton";
-
+import AddPopUp from "@/components/AddPopUp";
 
 export default function App() {
   const [isScanning, setIsScanning] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const showModal = () => {
+    setModalVisible(true);
+  };
+
+  const hideModal = () => {
+    setModalVisible(false);
+  };
 
   const startScanning = () => {
     setIsScanning(true);
   };
 
-  const handleScan = (data: string) => {
-    Alert.alert("Kod zeskanowany", `Dane: ${data}`);
+  const handleScan = () => {
+    showModal(); // Wywołaj funkcję showModal, aby pokazać modal po zeskanowaniu
     setIsScanning(false); // Wyłącz skanowanie po odczytaniu kodu
   };
 
@@ -24,6 +33,8 @@ export default function App() {
       <View style={styles.scanButtonContainer}>
         <ScanButton onPress={startScanning} />
       </View>
+
+      <AddPopUp modalVisible={modalVisible} showModal={showModal} hideModal={hideModal} />
     </View>
   );
 }

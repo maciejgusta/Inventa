@@ -1,5 +1,5 @@
 import { Stack } from "expo-router";
-
+import { ModalProvider } from "@/app/ModalContext";
 export default function RootLayout ()
 {
   return (
