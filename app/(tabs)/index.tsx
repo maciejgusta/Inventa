@@ -3,17 +3,20 @@ import { useState } from "react";
 import CameraCodeScanner from "@/components/CameraCodeScanner";
 import ScanButton from "@/components/ScanButton";
 import AddPopUp from "@/components/AddPopUp";
+import { withDelay } from "react-native-reanimated";
 
 export default function App() {
-  const [isScanning, setIsScanning] = useState(false);
+  const [isScanning, setIsScanning] = useState(true);
   const [modalVisible, setModalVisible] = useState(false);
-
+  const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
   const showModal = () => {
     setModalVisible(true);
   };
 
-  const hideModal = () => {
+  async function hideModal(){
     setModalVisible(false);
+    await delay(1000);
+    startScanning();
   };
 
   const startScanning = () => {
@@ -21,8 +24,8 @@ export default function App() {
   };
 
   const handleScan = () => {
-    showModal(); // Wywołaj funkcję showModal, aby pokazać modal po zeskanowaniu
-    setIsScanning(false); // Wyłącz skanowanie po odczytaniu kodu
+    showModal();
+    setIsScanning(false);
   };
 
   return (
@@ -30,9 +33,7 @@ export default function App() {
       <View style={styles.cameraContainer}>
         <CameraCodeScanner onScan={handleScan} isScanning={isScanning} />
       </View>
-      <View style={styles.scanButtonContainer}>
-        <ScanButton onPress={startScanning} />
-      </View>
+      
 
       <AddPopUp modalVisible={modalVisible} showModal={showModal} hideModal={hideModal} />
     </View>
