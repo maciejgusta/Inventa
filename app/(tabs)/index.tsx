@@ -33,7 +33,6 @@ export default function App() {
       <View style={styles.cameraContainer}>
         <CameraCodeScanner onScan={handleScan} isScanning={isScanning} />
       </View>
-      
 
       <AddPopUp modalVisible={modalVisible} showModal={showModal} hideModal={hideModal} />
     </View>
@@ -49,11 +48,10 @@ const styles = StyleSheet.create({
   },
   cameraContainer: {
     flex: 1,
+    bottom: "5%",
     width: "90%",
     justifyContent: "center",
     alignItems: "center",
   },
-  scanButtonContainer: {
-    paddingBottom: 30,
-  },
+  
 });
