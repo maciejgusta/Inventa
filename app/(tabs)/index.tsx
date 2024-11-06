@@ -8,16 +8,18 @@ import { withDelay } from "react-native-reanimated";
 export default function App() {
   const [isScanning, setIsScanning] = useState(true);
   const [modalVisible, setModalVisible] = useState(false);
-  const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+  const delay = (ms: number) =>
+    new Promise((resolve) => setTimeout(resolve, ms));
+
   const showModal = () => {
     setModalVisible(true);
   };
 
-  async function hideModal(){
+  async function hideModal() {
     setModalVisible(false);
     await delay(1000);
     startScanning();
-  };
+  }
 
   const startScanning = () => {
     setIsScanning(true);
@@ -34,7 +36,11 @@ export default function App() {
         <CameraCodeScanner onScan={handleScan} isScanning={isScanning} />
       </View>
 
-      <AddPopUp modalVisible={modalVisible} showModal={showModal} hideModal={hideModal} />
+      <AddPopUp
+        modalVisible={modalVisible}
+        showModal={showModal}
+        hideModal={hideModal}
+      />
     </View>
   );
 }
@@ -53,5 +59,4 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  
 });

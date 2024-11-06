@@ -10,8 +10,6 @@ import {
 import DefaultButton from "@/components/DefaultButton";
 import { useState } from "react";
 
-const [text, setText] = useState("");
-
 interface AddPopUpProps {
   showModal: () => void;
   hideModal: () => void;
@@ -23,6 +21,8 @@ export default function AddPopUp({
   showModal,
   hideModal,
 }: AddPopUpProps) {
+  const [text, setText] = useState("");
+
   return (
     <Modal
       animationType="fade"
@@ -33,10 +33,7 @@ export default function AddPopUp({
       <View style={styles.overlay}>
         <View style={styles.container}>
           <Text style={styles.title}>Dodaj przedmiot</Text>
-          <TextInput
-            placeholder="Wpisz coś..."
-            value={""}
-          />
+          <TextInput placeholder="Wpisz coś..." value={""} />
           <View style={styles.buttoncontainer}>
             <DefaultButton onPress={hideModal} text="Zamknij" />
             <DefaultButton onPress={hideModal} text="Zapisz" />

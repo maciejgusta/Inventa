@@ -8,7 +8,10 @@ import {
   TouchableOpacity,
 } from "react-native";
 
+
+
 export default function Adding() {
+  
   const [modalVisible, setModalVisible] = useState(false);
 
   // Funkcja do pokazania modala

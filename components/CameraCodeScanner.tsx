@@ -9,11 +9,13 @@ interface CameraViewProps {
   isScanning: boolean;
 }
 
-export default function CameraCodeScanner({ onScan, isScanning }: CameraViewProps) {
-  
+export default function CameraCodeScanner({
+  onScan,
+  isScanning,
+}: CameraViewProps) {
+  const [isFocused, setIsFocused] = useState(false);
   const [type, setType] = useState(CameraType.back);
   const [permission, requestPermission] = Camera.useCameraPermissions();
-  const [isFocused, setIsFocused] = useState(false);
 
   const handleBarCodeScanned = ({ data }: { data: string }) => {
     if (isScanning) {
@@ -38,8 +40,10 @@ export default function CameraCodeScanner({ onScan, isScanning }: CameraViewProp
   if (!permission || !permission.granted) {
     return (
       <View style={styles.container}>
-        <Text style={styles.permission_text}>We need your permission to show the camera</Text>
-        <PermissionButton onPress={requestPermission}/>
+        <Text style={styles.permission_text}>
+          We need your permission to show the camera
+        </Text>
+        <PermissionButton onPress={requestPermission} />
       </View>
     );
   }
