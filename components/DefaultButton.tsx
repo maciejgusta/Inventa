@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     borderColor: "#ffd33d",
     borderRadius: 10,
     borderWidth: 3,
-    padding: 5,
+    padding: "3%",
     width: "40%",
     height: "100%",
     alignItems: "center",

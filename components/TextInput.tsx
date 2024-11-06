@@ -30,7 +30,6 @@ export default function InputText({
 
 const styles = StyleSheet.create({
     input: {
-        borderBlockColor: "white",
-        borderStyle: "solid",
+        
     },
 });

@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import DefaultButton from "@/components/DefaultButton";
 import { useState } from "react";
+import InputText from "@/components/TextInput";
 
 interface AddPopUpProps {
   showModal: () => void;
@@ -21,7 +22,23 @@ export default function AddPopUp({
   showModal,
   hideModal,
 }: AddPopUpProps) {
-  const [text, setText] = useState("");
+  const [kodKreskowy, setKodKreskowy] = useState("");
+  const [nazwa, setNazwa] = useState("");
+  const [ilosc, setIlosc] = useState("");
+  const [cena, setCena] = useState("");
+  const [jednostka, setJednostka] = useState("");
+
+
+  const handleHideModal = () => {
+    setKodKreskowy("");
+    setNazwa("");
+    setIlosc("");
+    setCena("");
+    setJednostka("");
+
+
+    hideModal();
+  };
 
   return (
     <Modal
@@ -33,10 +50,46 @@ export default function AddPopUp({
       <View style={styles.overlay}>
         <View style={styles.container}>
           <Text style={styles.title}>Dodaj przedmiot</Text>
-          <TextInput placeholder="Wpisz coś..." value={""} />
+          <View style={styles.inputContainer}>
+            <InputText
+              placeholder="Kod kreskowy..."
+              value={kodKreskowy}
+              onChangeText={setKodKreskowy}
+              style={styles.input}
+              inputStyle={styles.customInput}
+            />
+            <InputText
+              placeholder="Nazwa..."
+              value={nazwa}
+              onChangeText={setNazwa}
+              style={styles.input}
+              inputStyle={styles.customInput}
+            />
+            <InputText
+              placeholder="Cena..."
+              value={ilosc}
+              onChangeText={setIlosc}
+              style={styles.input}
+              inputStyle={styles.customInput}
+            />
+            <InputText
+              placeholder="Ilość..."
+              value={cena}
+              onChangeText={setCena}
+              style={styles.input}
+              inputStyle={styles.customInput}
+            />
+            <InputText
+              placeholder="Jednostka..."
+              value={jednostka}
+              onChangeText={setJednostka}
+              style={styles.input}
+              inputStyle={styles.customInput}
+            />
+          </View>
           <View style={styles.buttoncontainer}>
-            <DefaultButton onPress={hideModal} text="Zamknij" />
-            <DefaultButton onPress={hideModal} text="Zapisz" />
+            <DefaultButton style={{ flex: 1, marginHorizontal: 5 }} onPress={handleHideModal} text="Zamknij" />
+            <DefaultButton style={{ flex: 1, marginHorizontal: 5 }} onPress={handleHideModal} text="Zapisz" />
           </View>
         </View>
       </View>
@@ -47,34 +100,45 @@ export default function AddPopUp({
 const styles = StyleSheet.create({
   overlay: {
     flex: 1,
-    backgroundColor: "rgba(0, 0, 0, 0.5)", // Przezroczyste tło dla efektu overlay
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
     justifyContent: "center",
     alignItems: "center",
   },
   container: {
-    width: "85%",
-    height: "85%",
+    width: "90%",
+    height: "88%",
     padding: "4%",
-    backgroundColor: "#25292e", // Poprawny format koloru
+    backgroundColor: "#25292e",
     borderRadius: 10,
-    justifyContent: "flex-end", // Ustaw przyciski na dole
+    justifyContent: "center",
   },
-  text: {
-    color: "white",
-    fontSize: 18,
-    marginBottom: 20,
-    textAlign: "center",
-  },
+  
   buttoncontainer: {
     flexDirection: "row",
     justifyContent: "space-around",
     alignSelf: "stretch",
+    marginTop: 20, // Dodaj odstęp nad przyciskami
   },
 
   title: {
-    flex: 1,
     color: "white",
-    fontSize: 18,
+    fontSize: 20,
+    fontWeight: "bold",
     alignSelf: "center",
+    marginBottom: 10,
+  },
+  input: {
+    borderColor: "#fff",
+    borderWidth: 1,
+    padding: 10,
+    borderRadius: 5,
+    marginBottom: 10,
+  },
+  customInput: {
+    color: "#fff",
+  },
+  inputContainer: {
+    marginBottom: 20, // Opcjonalne: odstęp nad przyciskami
   },
 });
+
